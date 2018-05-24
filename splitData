@@ -1,0 +1,73 @@
+
+%% Data Pointers 
+
+calibDataSource = '/Users/shlomia/Work/PycharmProjects/voxelNet2/voxelnet/data/object/data_object_calib/training/calib/';
+veloDataSource = '/Users/shlomia/Work/PycharmProjects/voxelNet2/voxelnet/data/object/data_object_velodyne/training/velodyne/';
+imageDataSource = '/Users/shlomia/Work/PycharmProjects/voxelNet2/voxelnet/data/object/data_object_image_2/training/image_2/';
+label2DataSource = '/Users/shlomia/Work/PycharmProjects/voxelNet2/voxelnet/data/object/data_label2/label_2/';
+
+
+trainingTargetFolder = '/Users/shlomia/Work/PycharmProjects/voxelNet2/voxelnet/data/training/';
+calibTrainingTargetFolder = [trainingTargetFolder, 'calib/'];
+image2TrainingTargetFolder = [trainingTargetFolder, 'image_2/'];
+veloTrainingTargetFolder = [trainingTargetFolder, 'velodyne/'];
+label2TrainingTargetFolder = [trainingTargetFolder, 'label_2/'];
+
+validationTargetFolder = '/Users/shlomia/Work/PycharmProjects/voxelNet2/voxelnet/data/validation/';
+calibValidateTargetFolder = [validationTargetFolder, 'calib/'];
+image2ValidateTargetFolder = [validationTargetFolder, 'image_2/'];
+veloValidateTargetFolder = [validationTargetFolder, 'velodyne/'];
+label2ValidateTargetFolder = [validationTargetFolder, 'label_2/'];
+
+
+%% Train data copy
+fileID = fopen('ImageSets/train.txt', 'r');
+Train = textscan(fileID,'%s');
+numFiles = length(Train{1});
+
+for i=1:numFiles
+%     %% calib
+%     calibFileName = [labelDataSource, cell2mat(Train{1}(i)), '.txt'];
+%     copyfile(labelFileName, calibTrainingTargetFolder);
+%     
+%     %% image_2
+%     imageFileName = [imageDataSource, cell2mat(Train{1}(i)), '.png'];
+%     copyfile(imageFileName ,image2TrainingTargetFolder);   
+%     
+%     %% velo
+%     veloFileName = [veloDataSource, cell2mat(Train{1}(i)), '.bin'];
+%     copyfile(veloFileName, veloTrainingTargetFolder);   
+    
+    %% label_2
+    labelFileName = [label2DataSource, cell2mat(Train{1}(i)), '.txt'];
+    copyfile(labelFileName, label2TrainingTargetFolder);
+
+end
+
+
+%% Validation data copy
+fileID = fopen('ImageSets/val.txt', 'r');
+Validate = textscan(fileID,'%s');
+numFiles = length(Validate{1});
+
+for i=1:numFiles
+%     %% calib
+%     calibFileName = [calibDataSource, cell2mat(Validate{1}(i)), '.txt'];
+%     copyfile(labelFileName, calibValidateTargetFolder);
+%     
+%     %% image_2
+%     imageFileName = [imageDataSource, cell2mat(Validate{1}(i)), '.png'];
+%     copyfile(imageFileName ,image2ValidateTargetFolder);   
+%     
+%     %% velo
+%     veloFileName = [veloDataSource, cell2mat(Validate{1}(i)), '.bin'];
+%     copyfile(veloFileName, veloValidateTargetFolder);   
+    %% label_2
+    labelFileName = [label2DataSource, cell2mat(Validate{1}(i)), '.txt'];
+    copyfile(labelFileName, label2ValidateTargetFolder);
+
+    
+    
+end
+
+
